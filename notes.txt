@@ -1,0 +1,27 @@
+Web Applications
+Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
+
+APIs
+With a myriad of HTTP utility methods and middleware at your disposal, creating a robust API is quick and easy
+
++++++++
+
+npm init
+install Express
+
+API weather application - openweathermap.org/api
+Pokémon API
+
+Endpoint => https://api.chucknorris.io/jokes/random
+Paths
+		=> narrow down on a specific piece of data 	=>	https://v2.jokeapi.dev/joke/dark https://v2.jokeapi.dev/joke/ is the endpoint and dark is the path
+		=> parameters go at the end of the endpoint and the path, after a question mark as a key-value pair, ex.: https://v2.jokeapi.dev/joke/programming?contains=debugging (a query)
+		=> more than 1 query, separate them with &
+Parameters
+Authentication
+
+nsfw (not suitable for work)
+
+https.get
+
+["animal","career","celebrity","dev","explicit","fashion","food","history","money","movie","music","political","religion","science","sport","travel"]
