@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./css/theme.css">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/pages.css">
+    <title>folio</title>
+</head>
+
+<body>
+
+    <main id="main" class="site-wrapper">
+        <header class="site-header">
+            <nav class="navbar">
+                <div class="brand-logo">
+                    <a href="/">
+                        <h2>folio.</h2>
+                    </a>
+                </div>
+                <div class="navbar-nav">
+                    <ul class="ul-defaults-none main-menu">
+                        <li class="nav-item">Home</li>
+                        <li class="nav-item" data-open="about">About Me</li>
+                        <li class="nav-item" data-open="contact">Contact</li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <h2 class="header-lg">Code. Eat. Sleep.</h2>
+
+        <!-- Modals -->
+        <!-- Contact Page Modal-->
+        <div id="contact" class="full-site-modal page-block" data-animation="zoomInOut">
+            <div class="container-fluid">
+                <header class="modal-header">
+                    <h3>CONTACT PAGE</h3>
+                    <i class="fas fa-times" data-close></i>
+                </header>
+                <div class="modal-body">
+                    <div class="contact-text">
+                        <h2 class="header-md">Jason Brewer</h2>
+                        <div>Have a project or question? Send me a message</div>
+                        <div>I will reply asap</div>
+                    </div>
+                    <form class="folio-form">
+                        <input class="form-control" name="name" type="text" placeholder="Name">
+                        <input class="form-control" name="email" type="email" placeholder="Email">
+                        <input class="form-control" name="subject" type="text" placeholder="Subject">
+                        <textarea class="form-control" name="message" cols="30" rows="3" placeholder="Write your message..."></textarea>
+                        <input type="submit" value="Send" class="btn btn-primary round-pill">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="./js/portfolioCard.js"></script>
+    <script src="./js/modalCard.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="js/carousel.js"></script>
+</body>
+
+</html>
