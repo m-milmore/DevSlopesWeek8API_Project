@@ -2,6 +2,8 @@ const fetchButton = document.querySelector(".fetch-button");
 const dataLoading = document.querySelector(".data-loading");
 const welcomeText = document.querySelector(".welcome-text");
 const moviesContainer = document.querySelector(".movies-container");
+const myFavsContainer = document.querySelector(".my-favs-container");
+const countryCount = document.querySelector(".country-count");
 
 const getMovies = async() => {
     let allMovies = [];
@@ -64,10 +66,22 @@ function indexNormalisation(index) {
 //     </div>
 // </div>
 
+function refreshDeck() {
+    const deck = moviesContainer.children;
+    deck[0].style.transform = "rotateY(360deg)";
+    // for (const card of deck) {
+    //     card.style.transform = "rotateY(360deg)";
+    // }
+    setTimeout(() => {
+        deck[0].style.transform = "none";
+    }, 5000);
+}
+
 function createCard(twoSpaceIndex, title, year, country) {
     const div1 = document.createElement("div");
     div1.setAttribute("id", `card${twoSpaceIndex}`);
-    div1.setAttribute("class", "movie-card");
+    div1.setAttribute("class", "movie-card is-visible");
+    div1.setAttribute("data-animation", "zoomInOut");
 
     const div2 = document.createElement("div");
     div2.setAttribute("class", "card-top");
@@ -106,18 +120,62 @@ function createCard(twoSpaceIndex, title, year, country) {
     const div9 = document.createElement("div");
     div9.setAttribute("class", "card-bottom");
 
-    div10 = document.createElement("div");
+    const div10 = document.createElement("div");
     div10.setAttribute("class", "btn-primary add-to-fav round-pill");
-
-    a = document.createElement("a");
-    a.setAttribute("href", "#!");
-    a.innerHTML = "Add to Favorites";
-    a.addEventListener("click", () => {
-        const oldChild = moviesContainer.removeChild(div1);
+    div10.addEventListener("click", () => {
+        div1.classList.remove("is-visible");
+        div1.style.opacity = "0";
+        div1.addEventListener('transitionend', () => {
+            const myFavNode = moviesContainer.removeChild(div1);
+            // refreshDeck();
+            // moviesContainer.style.transform = "scale(0.1)";
+            // moviesContainer.style.opacity = "0";
+            myFavNode.classList.add("is-visible");
+            myFavNode.style.opacity = "1";
+            myFavNode.childNodes[2].childNodes[0].style.display = "none";
+            myFavNode.childNodes[2].childNodes[1].style.display = "block";
+            myFavsContainer.appendChild(myFavNode);
+            // setTimeout(() => {
+            //     moviesContainer.style.transform = "none";
+            //     moviesContainer.style.opacity = "1";
+            // }, 500);
+        });
     });
 
+    const a = document.createElement("a");
+    a.setAttribute("href", "#!");
+    a.innerHTML = "Add to Favorites";
+
+    const div11 = document.createElement("div");
+    div11.setAttribute("class", "btn-primary add-to-fav round-pill");
+    div11.style.display = "none";
+    div11.addEventListener("click", () => {
+        div1.classList.remove("is-visible");
+        div1.style.opacity = "0";
+        div1.addEventListener("transitionend", () => {
+            const myFavNode = myFavsContainer.removeChild(div1);
+            // myFavsContainer.style.transform = "scale(0.1)";
+            // myFavsContainer.style.opacity = "0";
+            myFavNode.classList.add("is-visible");
+            myFavNode.style.opacity = "1";
+            myFavNode.childNodes[2].childNodes[1].style.display = "none";
+            myFavNode.childNodes[2].childNodes[0].style.display = "block";
+            moviesContainer.appendChild(myFavNode);
+            // setTimeout(() => {
+            //     myFavsContainer.style.transform = "none";
+            //     myFavsContainer.style.opacity = "1";
+            // }, 500);
+        });
+    });
+
+    const a2 = document.createElement("a");
+    a2.setAttribute("href", "#!");
+    a2.innerHTML = "Remove from Favorites";
+
     div10.appendChild(a);
+    div11.appendChild(a2);
     div9.appendChild(div10);
+    div9.appendChild(div11);
     div6.appendChild(div7);
     div6.appendChild(h3_1);
     div6.appendChild(div8);
@@ -133,16 +191,48 @@ function createCard(twoSpaceIndex, title, year, country) {
     moviesContainer.appendChild(div1);
 }
 
+function createCountryList(countries) {
+    console.log(countries);
+    const obj = countries.reduce(function(acc, curr) {
+        return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
+    }, {});
+    console.log(obj);
+    const entries = Object.entries(obj);
+    console.log(entries);
+    const sorted = entries.sort((a, b) => b[1] - a[1]);
+    console.log(sorted);
+
+    const h2 = document.createElement("h2");
+    h2.textContent = "List of Countries:";
+
+    const ul = document.createElement("ul");
+
+    for (const country of sorted) {
+        const li = document.createElement("li");
+        const formatWord = country[1] > 1 ? "movies" : "movie";
+        li.textContent = `${country[0]}: ${country[1]} ${formatWord}.`;
+        ul.appendChild(li);
+    }
+
+    countryCount.appendChild(h2);
+    countryCount.appendChild(ul);
+}
+
 const moviesToPost = (data) => {
     dataLoading.style.display = "none";
+    moviesContainer.style.transform = "none";
+    moviesContainer.style.opacity = "1";
     const displayItems = 30;
+    const arrayOfCountries = [];
 
     for (const [index, { title, year, countries }] of data.entries()) {
         const country = extractCountry(countries);
+        arrayOfCountries.push(country);
         const twoSpaceIndex = indexNormalisation(index + 1);
         createCard(twoSpaceIndex, title, year, country);
         if (index === displayItems - 1) break;
     }
+    createCountryList(arrayOfCountries);
 };
 
 fetchButton.addEventListener("click", () => {
@@ -154,3 +244,5 @@ fetchButton.addEventListener("click", () => {
     // }, 1000);
     getMovies();
 });
+
+exports = { moviesContainer, myFavsContainer };

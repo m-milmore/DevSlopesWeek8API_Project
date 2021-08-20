@@ -1,0 +1,166 @@
+.toggle-panel {
+    position: fixed;
+    right: 0;
+    top: 25%;
+    z-index: 100;
+    transition: .4s;
+    transform: translateX(100%);
+}
+
+.toggle-panel.open {
+    transform: translateX(0);
+}
+
+.toggle-body {
+    background-color: #495fef;
+    border: transparent;
+    max-width: 185px;
+    padding: 15px 13px;
+    text-align: center;
+    border-bottom-left-radius: 25%;
+    position: relative;
+}
+
+.toggle-body>span {
+    color: white;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.09px;
+    line-height: 26px;
+    padding-bottom: 8px;
+    display: inline-flex;
+}
+
+.toggle-body .btn-group {
+    box-shadow: 0 12px 34px rgba(22, 28, 45, 0.2);
+    border-radius: 33px;
+    background-color: white;
+    overflow: hidden;
+    display: flex;
+    max-width: 153px;
+}
+
+.toggle-body .btn-group .switcher-btn {
+    background: transparent;
+    border: none;
+    width: 50%;
+    font-size: 15px;
+    font-weight: 700;
+    height: 42px;
+    padding-left: 15px;
+    padding-right: 15px;
+    letter-spacing: 1.4px;
+}
+
+.toggle-body .btn-group .switcher-btn.active {
+    background-color: #ced4e7;
+}
+
+.toggle-body .toggle-tab {
+    position: absolute;
+    top: 0;
+    transform: translateX(-100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 50px;
+    border: 0;
+    background: #495fef;
+    color: white;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    left: 1px;
+}
+
+.toggle-tab i {
+    font-size: 1rem;
+    transition: 0.4s;
+    pointer-events: none;
+}
+
+.toggle-panel.open .toggle-tab i {
+    transform: scaleX(-1);
+}
+
+.navbar {
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 0.5rem 1rem;
+    width: 100%;
+}
+
+.navbar .navbar-nav {
+    margin-left: auto;
+}
+
+.brand-logo a h2 {
+    font-size: 1.5rem;
+    letter-spacing: -0.5px;
+    line-height: 1.42;
+}
+
+.main-menu {
+    display: flex;
+}
+
+.main-menu .nav-item {
+    padding: 18px;
+    font-size: 15px;
+    line-height: 26px;
+    cursor: pointer;
+}
+
+.full-site-modal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    transition: all 0.35s ease-in;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 99;
+    background: white;
+}
+
+.modal-header {
+    display: flex;
+    padding-bottom: 1rem;
+    justify-content: space-between;
+}
+
+.modal-header .fa-times {
+    font-size: 1.5rem;
+    transition: all 0.5s ease-in;
+}
+
+.modal-header .fa-times:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.full-site-modal.is-visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+[data-animation="zoomInOut"].full-site-modal,
+[data-animation="zoomInOut"].movie-card {
+    transform: scale(0.1);
+}
+
+[data-animation="zoomInOut"].full-site-modal.is-visible,
+[data-animation="zoomInOut"].movie-card.is-visible {
+    transform: none;
+}

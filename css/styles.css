@@ -1,3 +1,7 @@
+body.js-stop-transition * {
+    transition: none !important;
+}
+
 .bgd-img {
     position: absolute;
     opacity: .05;
@@ -5,7 +9,7 @@
 }
 
 h1 {
-    color: crimson
+    color: crimson;
 }
 
 .welcome-text {
@@ -55,14 +59,21 @@ button:not(:disabled):not(.disabled) {
     }
 }
 
-.movies-container {
+.movies-container,
+.my-favs-container {
     display: flex;
     text-align: center;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     gap: 20px;
     margin: 50px auto;
+    transition: all 0.35s ease-in;
+}
+
+.movies-container {
+    transform: scale(0.05);
+    opacity: 0;
 }
 
 .movie-card {
@@ -78,6 +89,7 @@ button:not(:disabled):not(.disabled) {
     padding: 10px 15px;
     box-shadow: 0 0 10px rgb(48 63 100 / 15%);
     overflow: hidden;
+    transition: all 0.5s ease-in;
 }
 
 .card-top {
@@ -114,4 +126,16 @@ button:not(:disabled):not(.disabled) {
 .movie-country-and-year h3 {
     margin: 0;
     text-align: center;
+}
+
+.country-count {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 50px auto;
+    transition: all 0.35s ease-in;
 }

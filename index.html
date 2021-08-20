@@ -8,7 +8,7 @@
     <meta name="description" content="API Website">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"
     />
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -17,28 +17,81 @@
 
     <link rel="stylesheet" href="./css/default.css">
     <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/styles2.css">
+
 </head>
 
-<body>
-    <div class="container main">
-        <div class="bgd-img">
-            <img src="./assets/images/movie-icon-images-28.jpg" alt="movie camera">
-        </div>
-        <h1>Random Movies API</h1>
-        <div class="welcome-text">Welcome to my movies API website.<br>Click on the button below to fetch random movies.</div>
-        <div class="btn btn-primary round-pill fetch-button">
-            <a href="#!">Get Random Movies</a>
-        </div>
-        <div class="data-loading">
-            <div>Loading random movies...</div>
-            <i class="fa fa-spinner"></i>
-        </div>
-        <div class="movies-container">
+<body class="js-stop-transition">
+
+    <div class="toggle-panel">
+        <div class="toggle-body">
+            <span>Toggle Sort</span>
+            <div class="btn-group">
+                <button class="switcher-btn">(A-Z)</button>
+                <button class="switcher-btn">(Z-A)</button>
+            </div>
+            <button class="toggle-tab">
+							<i class="fas fa-chevron-left"></i>
+						</button>
         </div>
     </div>
 
+    <main>
+        <header>
+            <nav class="navbar">
+                <div class="brand-logo">
+                    <a href="/">
+                        <h2>Random Movies.</h2>
+                    </a>
+                </div>
+                <div class="navbar-nav">
+                    <ul class="main-menu">
+                        <li class="nav-item">Home</li>
+                        <li class="nav-item" data-open="myFavs">My Favorites</li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <div class="container">
+            <div class="bgd-img">
+                <img src="./assets/images/movie-icon-images-28.jpg" alt="movie camera">
+            </div>
+            <h1>Random Movies API</h1>
+            <div class="welcome-text">Welcome to my movies API website.<br>Click on the button below to fetch random movies.
+            </div>
+            <div class="btn btn-primary round-pill fetch-button">
+                <a href="#!">Get Random Movies</a>
+            </div>
+            <div class="data-loading">
+                <div>Loading random movies...</div>
+                <i class="fa fa-spinner"></i>
+            </div>
+            <div class="movies-container"></div>
+            <div class="country-count"></div>
+        </div>
+
+        <!-- MyFavorites Full Page Modal-->
+        <div id="myFavs" class="full-site-modal" data-animation="zoomInOut">
+            <div class="container-fluid">
+                <header class="modal-header">
+                    <h3>My Favorites</h3>
+                    <i class="fas fa-times" data-close></i>
+                </header>
+                <div class="modal-body">
+                    <h2>My Favorites</h2>
+                    <div class="my-favs-container"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
     <script src="./js/main.js" async defer></script>
+    <script src="./js/main2.js" async defer></script>
     <!-- <script src="./js/test.js" async defer></script> -->
+    <script>
+        document.body.classList.remove('js-stop-transition')
+    </script>
 </body>
 
 </html>

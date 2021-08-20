@@ -76,15 +76,9 @@ h1,
 h2,
 h3,
 h4 {
-    color: var(--color-headings);
+    color: #161c2d;
     margin-top: 0.25rem;
     margin-bottom: 0.5rem;
-}
-
-h2 {
-    font-size: 1.75rem;
-    font-weight: 500;
-    line-height: 1.2;
 }
 
 img {
@@ -105,6 +99,9 @@ button {
     padding-right: 15px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.container {
     max-width: 1140px;
 }
 
